@@ -1,0 +1,17 @@
+class Solution:
+    def jump(self, nums: List[int]) -> int:
+        jumps = 0
+        current_jump_end = 0  # Koniec obecnej "warstwy"
+        farthest = 0          # Najdalej, gdzie możemy sięgnąć w ogóle
+        
+        for i in range(len(nums) - 1):
+            farthest = max(farthest, i + nums[i])
+            
+            if i == current_jump_end:
+                jumps += 1
+                current_jump_end = farthest
+                
+                if current_jump_end >= len(nums) - 1:
+                    break
+                    
+        return jumps
